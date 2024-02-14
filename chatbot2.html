@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to right, #a8c0ff, #3f2b96);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+    <title>Marvel Chatbot</title>
+</head>
+<body>
+    <div class="menu">
+        <video autoplay loop muted plays-inline class="back-vdo">
+            <source src="vdo1.mp4" type="video/mp4">
+        </video>
+    <nav>
+        <img src="mar.jpg" class="logo">
+        <ul>
+            <li><a href="index.html">Acceuil</a></li>
+            <li><a href="movies.html">Our Best Movies</a></li>
+            <li><a href="connexion.html">Connexion</a></li>
+        </ul>
+    </nav>
+    
+    <video class="back-vdo" autoplay muted loop plays-inline>
+        <source src="vdo1.mp4" type="video/mp4"> 
+           
+</video>
+
+
+
+<div class="chat-container">
+    <div class="chat-box" id="chatBox"></div><hr>
+    <div id="questionButtons">
+      <button class="bot-message" onclick="return q1()">Tell me about Marvel movies.</button>
+      <button class="bot-message" onclick="return quest2()">Who are the main characters in Marvel?</button>
+      <button class="bot-message" onclick="return q3()">What is the MCU?</button>
+    </div>
+    <div class="input-container">
+        <input type="text" id="userInput" class="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()" class="send-button">Send</button>
+    </div>
+</div>
+
+<script>
+    
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+    const botMessage = 'Hi ! I am Marvel chatbot. How can I help you ?';
+    appendMessage('bot', botMessage);
+
+    function q1(){
+        var x= 'We have a wide range of Marvel movies, including titles like Iron Man, Thor, and Black Panther.';
+        const botMessage="Tell me about Marvel movies.";
+        appendMessage('bot',botMessage);
+        appendMessage('bot',x);
+    }
+
+    function q3(){
+        var z='MCU is a media franchise and shared universe centered around a series of superhero films and television series produced by Marvel Studios.';
+        const userMessage="The Marvel Cinematic Universe";
+        //appendMessage('bot',botMessage);
+        sendMessage(userMessage);
+        //appendMessage('bot',z);
+    }
+
+    function quest2(){
+        var q2= 'Explore iconic Marvel characters such as Iron Man, Thor, Captain America, and more.';
+        const botMessage="Here's some Marvel characters";
+        appendMessage('bot',botMessage);
+        appendMessage('bot',q2);
+    }
+          
+
+    function sendMessage(userMessage) {
+        userMessage = userInput.value.trim();
+
+        if (userMessage !== '') {
+            appendMessage('user', userMessage);
+            userInput.value = '';
+            const botMessage = generateBotResponse(userMessage);
+            appendMessage('bot', botMessage);
+        }
+    }
+
+
+    function generateBotResponse(userMessage) {
+        if (userMessage.toLowerCase().includes('hello')) {
+            return 'Hello! How can I help you today?';
+
+        }
+        else if (userMessage.toLowerCase().includes('bonjour')) {
+            return 'Hello! How can I help you today?';
+        }
+
+        else if (userMessage.toLowerCase().includes('hi')) {
+            return 'Hello! How can I help you today?';
+        }
+        else if (userMessage.toLowerCase().includes('hey')) {
+            return 'Hello! How can I help you today?';
+        }
+
+         else if (userMessage.toLowerCase().includes('how are you')) {
+            return 'I am just a computer program, but thanks for asking!';
+        }
+        else if (userMessage.toLowerCase().includes("spider")) {
+            return 'We have a wide range of Spider-Man Movies : Spider-Man (2002) ,Spider-Man 2 (2004) , Spider-Man 3 (2007) ,The Amazing Spider-Man(2012), The Amazing Spider-Man2 (2014), Captain America:Civil War (2016) ,Spider-Man: Homecoming(2017) ,Venom(2018) ,Spider-Man:Into the Spider-Verse (2018) ,Avengers:Infinity War(2018), Avengers:Endgame(2019) ,Spider-Man:Far From Home(2019) ,Venom :Let there be carnage(2021) ,Spider-Man: No way Home (2021) ,Morbius (2022).';
+          } 
+          else if (userMessage.toLowerCase().includes("characters")) {
+            return 'Explore iconic Marvel characters such as Iron Man, Thor, Captain America, and more.';
+          } 
+          else {
+            return 'I m sorry, I didn t understand that. How can I help you with Marvel?';
+          }
+
+    }
+
+
+    function appendMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
+        messageDiv.innerText = message;
+
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
